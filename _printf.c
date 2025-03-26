@@ -40,6 +40,10 @@ if (format == '%')
 count += _putchar('%');
 else if (format == 'd' || format == 'i')
 count += print_number(va_arg(args, int));
+else if (format == 'c')
+count += print_char(args);
+else if (format == 's')
+count += print_string(args);
 else
 {
 count += _putchar('%');
@@ -77,37 +81,5 @@ format++;
 }
 
 va_end(args);
-return (count);
-}
-
-/**
- * print_char - Prints a single character
- * @args: The list of arguments
- * Return: Number of characters printed (always 1)
- */
-int print_char(va_list args)
-{
-return (_putchar(va_arg(args, int)));
-}
-
-/**
- * print_string - Prints a string
- * @args: The list of arguments
- * Return: Number of characters printed
- */
-int print_string(va_list args)
-{
-char *str = va_arg(args, char *);
-int count = 0;
-
-if (!str)
-str = "(null)";
-
-while (*str)
-{
-_putchar(*str);
-str++;
-count++;
-}
 return (count);
 }
