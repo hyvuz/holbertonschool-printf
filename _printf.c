@@ -94,3 +94,24 @@ format++;
 va_end(args);
 return (count);
 }
+
+/**
+* print_percent - Prints the '%' character
+* @args: The va_list (not used here, but required for compatibility)
+* Return: Number of characters printed (always 1 for '%')
+*/
+int print_percent(va_list args)
+{
+(void)args;
+return (_putchar('%'));
+}
+
+/**
+* print_int - Prints an integer using print_number
+* @args: The va_list of arguments
+* Return: Number of characters printed
+*/
+int print_int(va_list args)
+{
+return (print_number(va_arg(args, int)));
+}
