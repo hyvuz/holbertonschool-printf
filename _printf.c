@@ -41,9 +41,18 @@ count += _putchar('%');
 else if (format == 'd' || format == 'i')
 count += print_number(va_arg(args, int));
 else if (format == 'c')
-count += print_char(args);
+count += _putchar(va_arg(args, int));
 else if (format == 's')
-count += print_string(args);
+{
+char *str = va_arg(args, char *);
+if (!str)
+str = "(null)";
+while (*str)
+{
+count += _putchar(*str);
+str++;
+}
+}
 else
 {
 count += _putchar('%');
@@ -53,8 +62,8 @@ return (count);
 }
 
 /**
-* _printf - Custom printf function that handles %d, %i, and %%
-* @format: Format string containing text and format specifiers
+* _printf - Custom printf function
+* @format: Format string
 * Return: Number of characters printed
 */
 int _printf(const char *format, ...)
@@ -72,6 +81,8 @@ while (*format)
 if (*format == '%')
 {
 format++;
+if (*format == '\0')  /* Handle case where % is at end */
+return (-1);
 count += handle_specifier(*format, args);
 }
 else
