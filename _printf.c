@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdarg.h>
 
+#include "main.h"
+
 /**
 * print_number - Recursively prints an integer using _putchar
 * @n: The integer to print
@@ -10,7 +12,14 @@ int print_number(int n)
 {
 int count = 0;
 
-if (n < 0)
+/* Special case: INT_MIN (-2147483648) */
+if (n == -2147483648)
+{
+count += _putchar('-');
+count += _putchar('2');  /* Manually printing '2' */
+n = 147483648;  /* Remaining part to print */
+}
+else if (n < 0)
 {
 _putchar('-');
 count++;
